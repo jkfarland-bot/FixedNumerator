@@ -17,3 +17,13 @@ keywords:
   - Lean 4
   - Mathlib
   - formal verification
+preferred-citation:
+  type: article
+  title: "Quartic Gauss sums over primes with a fixed numerator"
+  authors:
+    - family-names: Farland
+      given-names: Joseph S.
+      orcid: "https://orcid.org/0009-0007-6809-804X"
+  year: 2026
+  doi: 10.5281/zenodo.23882882
+  notes: "Preprint, Zenodo"

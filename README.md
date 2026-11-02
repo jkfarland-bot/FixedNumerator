@@ -6,7 +6,7 @@ A. Hamieh and H. Lin, *Quartic Gauss sums over primes and metaplectic theta func
 numerator `ν`.
 
 Companion note: J. S. Farland, *Quartic Gauss sums over primes with a fixed numerator*
-(manuscript, 2026).
+(preprint, Zenodo, 2026, [doi:10.5281/zenodo.23882882](https://doi.org/10.5281/zenodo.23882882)).
 
 Archived on Zenodo: [doi:10.5281/zenodo.23882652](https://doi.org/10.5281/zenodo.23882652).
 

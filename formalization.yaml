@@ -32,8 +32,9 @@ sources:
   - title: "Quartic Gauss sums over primes with a fixed numerator"
     authors:
       - "Joseph S. Farland"
+    id: "https://doi.org/10.5281/zenodo.23882882"
     type: "article"
-    location: "Manuscript, 2026"
+    location: "Preprint, Zenodo, 2026, https://doi.org/10.5281/zenodo.23882882"
     relationship: "formalizes"
     note: >-
       The companion note, by the same author. Lemma 2.2 (with the facts on pi^2 and the signs
