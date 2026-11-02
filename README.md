@@ -8,6 +8,8 @@ numerator `ν`.
 Companion note: J. S. Farland, *Quartic Gauss sums over primes with a fixed numerator*
 (manuscript, 2026).
 
+Archived on Zenodo: [doi:10.5281/zenodo.23882652](https://doi.org/10.5281/zenodo.23882652).
+
 DDHL prove that `∑_{c ≡ β (4)} g̃₄(c) (c/|c|)^ℓ Λ(c) R(N(c)/X) ≪ X^{5/6+ε}`. The note shows that
 their argument gives `X^{5/6+ε}(1 + |ℓ|)^{3/2+ε}` for `g̃₄(ν, c)` with any fixed nonzero `ν`. The
 only new ingredient is a local identity that removes the primes dividing `ν` from the coprimality
