@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "FixedNumerator: a Lean 4 formalization of the local step in extending a theorem on quartic Gauss sums over primes to a fixed numerator"
+authors:
+  - family-names: Farland
+    given-names: Joseph S.
+    orcid: "https://orcid.org/0009-0007-6809-804X"
+version: v1.0
+date-released: 2026-11-02
+license: Apache-2.0
+repository-code: "https://github.com/jkfarland-bot/FixedNumerator"
+keywords:
+  - quartic Gauss sums
+  - Gaussian integers
+  - metaplectic theta functions
+  - Lean 4
+  - Mathlib
+  - formal verification
