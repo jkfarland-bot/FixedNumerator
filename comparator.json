@@ -1,0 +1,39 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "FixedNumerator.ddhl_3_6",
+    "FixedNumerator.splitting_identity",
+    "FixedNumerator.numerator_period",
+    "FixedNumerator.primary_sq_mod_four",
+    "FixedNumerator.sign_class_invariant",
+    "FixedNumerator.sign_even_power",
+    "FixedNumerator.lemma_2_2",
+    "FixedNumerator.two_term_split",
+    "FixedNumerator.corollary_2_3_odd",
+    "FixedNumerator.corollary_2_3_odd_inverse",
+    "FixedNumerator.corollary_2_3_coupled",
+    "FixedNumerator.determinant_lower",
+    "FixedNumerator.determinant_ne_zero",
+    "FixedNumerator.determinant_r1",
+    "FixedNumerator.determinant_r3",
+    "FixedNumerator.determinant_coupled",
+    "FixedNumerator.smoothing_removal"
+  ],
+  "definition_names": [
+    "FixedNumerator.lam3",
+    "FixedNumerator.IsPrimary",
+    "FixedNumerator.C",
+    "FixedNumerator.normBall",
+    "FixedNumerator.truncSum",
+    "FixedNumerator.countAbs",
+    "FixedNumerator.sharpSum",
+    "FixedNumerator.smoothSum"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}
