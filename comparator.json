@@ -13,22 +13,20 @@
     "FixedNumerator.corollary_2_3_odd",
     "FixedNumerator.corollary_2_3_odd_inverse",
     "FixedNumerator.corollary_2_3_coupled",
+    "FixedNumerator.corollary_2_3_reduce",
+    "FixedNumerator.corollary_2_3_general",
     "FixedNumerator.determinant_lower",
     "FixedNumerator.determinant_ne_zero",
     "FixedNumerator.determinant_r1",
     "FixedNumerator.determinant_r3",
-    "FixedNumerator.determinant_coupled",
-    "FixedNumerator.smoothing_removal"
+    "FixedNumerator.determinant_coupled"
   ],
   "definition_names": [
     "FixedNumerator.lam3",
     "FixedNumerator.IsPrimary",
     "FixedNumerator.C",
     "FixedNumerator.normBall",
-    "FixedNumerator.truncSum",
-    "FixedNumerator.countAbs",
-    "FixedNumerator.sharpSum",
-    "FixedNumerator.smoothSum"
+    "FixedNumerator.truncSum"
   ],
   "permitted_axioms": [
     "propext",

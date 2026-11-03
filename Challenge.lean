@@ -17,7 +17,7 @@ packaged in `QuarticData` with the identities of David, Dunn, Hamieh and Lin §3
 computation uses ((3.2), (3.4), (3.5), `g₄(μ, 1) = 1` and the support part of (3.7)). That the
 actual symbol and Gauss sum satisfy them is DDHL §3 and is not formalized. The analytic inputs of
 DDHL (Proposition 4.3, Suzuki's relation (4.39), the quadratic large sieve, Vaughan's identity and
-the contour shift) are not formalized either; Corollary 1.2 assumes the smoothed bounds.
+the contour shift) are not formalized either.
 
 * `ddhl_3_6`: DDHL (3.6), derived from (3.2), (3.4), (3.5).
 * `splitting_identity`: `g₄(μ, π^k c') = (-1)^{C(c', π^k)} g₄(μ, π^k) g₄(μ π^{2k}, c')`.
@@ -25,11 +25,14 @@ the contour shift) are not formalized either; Corollary 1.2 assumes the smoothed
 * `primary_sq_mod_four`, `sign_class_invariant`, `sign_even_power`: the 2-adic facts behind the
   signs.
 * `lemma_2_2`: the splitting identity for truncated sums (Lemma 2.2).
+* `corollary_2_3_reduce`, `corollary_2_3_general`: Corollary 2.3 for every valuation `e`: the
+  reduction of `e` modulo `4` on the series prime to `π`, and the splitting with its terms at
+  `k = 4j ≤ e` and `k = e + 1`.
 * `two_term_split`, `corollary_2_3_odd`, `corollary_2_3_odd_inverse`, `corollary_2_3_coupled`:
-  removing a prime of the numerator from the coprimality condition (Corollary 2.3).
+  the four exact valuations `e = 0, 1, 2, 3` of Corollary 2.3, to which the reduction brings every
+  series prime to `π`.
 * `determinant_lower`, `determinant_ne_zero`, `determinant_r1`, `determinant_r3`,
   `determinant_coupled`: the determinants are bounded below on `σ ≥ 1`.
-* `smoothing_removal`: Corollary 1.2, from smoothed `o(X)` bounds to the sharp sum.
 -/
 
 open Complex Finset Filter Asymptotics Topology
@@ -87,15 +90,6 @@ open Classical in
 series `ψ*_β(s, μ, ℓ; γ)`, with the weight `W(c)` standing for `(c/|c|)^ℓ N(c)^{-s}`. -/
 def truncSum (D : QuarticData) (W : GaussianInt → ℂ) (μ β γ : GaussianInt) (X : ℕ) : ℂ :=
   ∑ c ∈ (normBall X).filter (fun c => (4 : GaussianInt) ∣ c - β ∧ IsCoprime c γ), D.g μ c * W c
-
-/-- `∑_{1 ≤ n ≤ x} ‖a n‖`, the counting function of `|a|`. -/
-def countAbs (a : ℕ → ℂ) (x : ℝ) : ℝ := ∑ n ∈ Icc 1 ⌊x⌋₊, ‖a n‖
-
-/-- The sharp sum `∑_{1 ≤ n ≤ X} a n`. -/
-def sharpSum (a : ℕ → ℂ) (X : ℕ) : ℂ := ∑ n ∈ Icc 1 X, a n
-
-/-- The smoothed sum `∑_{1 ≤ n ≤ X} a n R(n/X)`. -/
-def smoothSum (a : ℕ → ℂ) (R : ℝ → ℝ) (X : ℕ) : ℂ := ∑ n ∈ Icc 1 X, a n * (R (n / X) : ℂ)
 
 
 /-- **DDHL (3.6)**: `g₄(μ, c c') = (-1)^{C(c', c)} g₄(μ c'², c) g₄(μ, c')` for coprime primary
@@ -196,6 +190,32 @@ theorem corollary_2_3_coupled (D : QuarticData) (W : GaussianInt → ℂ) (hW1 :
           truncSum D W μ' β (π * γ) (X / π.norm.toNat ^ 3) := by
   sorry
 
+/-- **Corollary 2.3, first claim: reduction of the valuation.** On the series prime to `π`, the
+numerator `π^e μ'` may be replaced by `π^{e mod 4} μ'`, for every `e`. -/
+theorem corollary_2_3_reduce (D : QuarticData) (W : GaussianInt → ℂ) (π γ μ' β : GaussianInt)
+    (hβ : IsPrimary β) (e X : ℕ) :
+    truncSum D W (π ^ e * μ') β (π * γ) X = truncSum D W (π ^ (e % 4) * μ') β (π * γ) X := by
+  sorry
+
+/-- **Corollary 2.3 for every valuation.** For `μ = π^e μ'` with `μ'` prime to `π` and any
+`e ≥ 0`, the terms of Lemma 2.2 that survive are `k = 4j ≤ e` and `k = e + 1`:
+`S_γ(μ, β)(X) = ∑_{4j ≤ e} g₄(μ, π^{4j}) W(π)^{4j} S_{πγ}(μ, β)(X / N(π)^{4j})
+  + (-1)^{C(π^{e+1}β, π^{e+1})} g₄(μ, π^{e+1}) W(π)^{e+1} S_{πγ}(μ π^{2(e+1)}, π^{e+1}β)(X / N(π)^{e+1})`.
+For `e ≤ 3` the sum has the single term `j = 0`; for `e = 5`, for example, the terms are
+`k = 0, 4, 6`. -/
+theorem corollary_2_3_general (D : QuarticData) (W : GaussianInt → ℂ) (hW1 : W 1 = 1)
+    (hW : ∀ a b, W (a * b) = W a * W b) (π γ μ' β : GaussianInt) (hπ : Prime π)
+    (hπp : IsPrimary π) (hπγ : IsCoprime π γ) (hβ : IsPrimary β) (hμ' : IsCoprime μ' π)
+    (e X : ℕ) :
+    truncSum D W (π ^ e * μ') β γ X =
+      ∑ j ∈ range (e / 4 + 1), D.g (π ^ e * μ') (π ^ (4 * j)) * W π ^ (4 * j) *
+          truncSum D W (π ^ e * μ') β (π * γ) (X / π.norm.toNat ^ (4 * j)) +
+        (-1 : ℂ) ^ C (π ^ (e + 1) * β) (π ^ (e + 1)) * D.g (π ^ e * μ') (π ^ (e + 1)) *
+          W π ^ (e + 1) *
+          truncSum D W (π ^ e * μ' * π ^ (2 * (e + 1))) (π ^ (e + 1) * β) (π * γ)
+            (X / π.norm.toNat ^ (e + 1)) := by
+  sorry
+
 /-- If `‖a‖ ≤ N^A` and `‖w‖ = N^{-σ}`, then `1 - N^{A - kσ} ≤ ‖1 + a w^k‖`. -/
 theorem determinant_lower (N A σ : ℝ) (hN : 0 < N) (a w : ℂ) (ha : ‖a‖ ≤ N ^ A)
     (hw : ‖w‖ = N ^ (-σ)) (k : ℕ) : 1 - N ^ (A - k * σ) ≤ ‖1 + a * w ^ k‖ := by
@@ -226,16 +246,6 @@ theorem determinant_coupled (N σ : ℝ) (hN : 1 < N) (a₁ a₃ w : ℂ)
     (ha₁ : ‖a₁‖ ≤ N ^ ((1 : ℝ) / 2)) (ha₃ : ‖a₃‖ ≤ N ^ ((5 : ℝ) / 2)) (hw : ‖w‖ = N ^ (-σ))
     (hσ : 1 ≤ σ) :
     0 < 1 - N ^ (-1 : ℝ) ∧ 1 - N ^ (-1 : ℝ) ≤ ‖1 - a₁ * a₃ * w ^ 4‖ := by
-  sorry
-
-/-- **Corollary 1.2: removing the smoothing.** If `∑_{n ≤ x} ‖a n‖ ~ κ x` and the smoothed sums
-`∑ a n R(n/X)` are `o(X)` for every smooth `R` supported in some `[δ, 1]` with `δ > 0`, then
-`∑_{n ≤ X} a n = o(X)`. -/
-theorem smoothing_removal (a : ℕ → ℂ) (κ : ℝ)
-    (hmean : Tendsto (fun x : ℝ => countAbs a x / x) atTop (𝓝 κ))
-    (hsmooth : ∀ R : ℝ → ℝ, ContDiff ℝ ∞ R → (∃ δ > 0, Function.support R ⊆ Set.Icc δ 1) →
-      (fun X : ℕ => smoothSum a R X) =o[atTop] (fun X : ℕ => (X : ℝ))) :
-    (fun X : ℕ => sharpSum a X) =o[atTop] (fun X : ℕ => (X : ℝ)) := by
   sorry
 
 end FixedNumerator

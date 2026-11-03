@@ -118,6 +118,32 @@ theorem corollary_2_3_coupled (D : QuarticData) (W : GaussianInt → ℂ) (hW1 :
           truncSum D W μ' β (π * γ) (X / π.norm.toNat ^ 3) :=
   D.truncSum_coupled W hW1 hW β hπ hπp hπγ hβ hμ' X
 
+/-- **Corollary 2.3, first claim: reduction of the valuation.** On the series prime to `π`, the
+numerator `π^e μ'` may be replaced by `π^{e mod 4} μ'`, for every `e`. -/
+theorem corollary_2_3_reduce (D : QuarticData) (W : GaussianInt → ℂ) (π γ μ' β : GaussianInt)
+    (hβ : IsPrimary β) (e X : ℕ) :
+    truncSum D W (π ^ e * μ') β (π * γ) X = truncSum D W (π ^ (e % 4) * μ') β (π * γ) X :=
+  D.truncSum_reduce_num W μ' β hβ e X
+
+/-- **Corollary 2.3 for every valuation.** For `μ = π^e μ'` with `μ'` prime to `π` and any
+`e ≥ 0`, the terms of Lemma 2.2 that survive are `k = 4j ≤ e` and `k = e + 1`:
+`S_γ(μ, β)(X) = ∑_{4j ≤ e} g₄(μ, π^{4j}) W(π)^{4j} S_{πγ}(μ, β)(X / N(π)^{4j})
+  + (-1)^{C(π^{e+1}β, π^{e+1})} g₄(μ, π^{e+1}) W(π)^{e+1} S_{πγ}(μ π^{2(e+1)}, π^{e+1}β)(X / N(π)^{e+1})`.
+For `e ≤ 3` the sum has the single term `j = 0`; for `e = 5`, for example, the terms are
+`k = 0, 4, 6`. -/
+theorem corollary_2_3_general (D : QuarticData) (W : GaussianInt → ℂ) (hW1 : W 1 = 1)
+    (hW : ∀ a b, W (a * b) = W a * W b) (π γ μ' β : GaussianInt) (hπ : Prime π)
+    (hπp : IsPrimary π) (hπγ : IsCoprime π γ) (hβ : IsPrimary β) (hμ' : IsCoprime μ' π)
+    (e X : ℕ) :
+    truncSum D W (π ^ e * μ') β γ X =
+      ∑ j ∈ range (e / 4 + 1), D.g (π ^ e * μ') (π ^ (4 * j)) * W π ^ (4 * j) *
+          truncSum D W (π ^ e * μ') β (π * γ) (X / π.norm.toNat ^ (4 * j)) +
+        (-1 : ℂ) ^ C (π ^ (e + 1) * β) (π ^ (e + 1)) * D.g (π ^ e * μ') (π ^ (e + 1)) *
+          W π ^ (e + 1) *
+          truncSum D W (π ^ e * μ' * π ^ (2 * (e + 1))) (π ^ (e + 1) * β) (π * γ)
+            (X / π.norm.toNat ^ (e + 1)) :=
+  D.truncSum_general W hW1 hW β hπ hπp hπγ hβ hμ' e X
+
 /-- If `‖a‖ ≤ N^A` and `‖w‖ = N^{-σ}`, then `1 - N^{A - kσ} ≤ ‖1 + a w^k‖`. -/
 theorem determinant_lower (N A σ : ℝ) (hN : 0 < N) (a w : ℂ) (ha : ‖a‖ ≤ N ^ A)
     (hw : ‖w‖ = N ^ (-σ)) (k : ℕ) : 1 - N ^ (A - k * σ) ≤ ‖1 + a * w ^ k‖ :=
@@ -149,15 +175,5 @@ theorem determinant_coupled (N σ : ℝ) (hN : 1 < N) (a₁ a₃ w : ℂ)
     (hσ : 1 ≤ σ) :
     0 < 1 - N ^ (-1 : ℝ) ∧ 1 - N ^ (-1 : ℝ) ≤ ‖1 - a₁ * a₃ * w ^ 4‖ :=
   delta_coupled_lower hN ha₁ ha₃ hw hσ
-
-/-- **Corollary 1.2: removing the smoothing.** If `∑_{n ≤ x} ‖a n‖ ~ κ x` and the smoothed sums
-`∑ a n R(n/X)` are `o(X)` for every smooth `R` supported in some `[δ, 1]` with `δ > 0`, then
-`∑_{n ≤ X} a n = o(X)`. -/
-theorem smoothing_removal (a : ℕ → ℂ) (κ : ℝ)
-    (hmean : Tendsto (fun x : ℝ => countAbs a x / x) atTop (𝓝 κ))
-    (hsmooth : ∀ R : ℝ → ℝ, ContDiff ℝ ∞ R → (∃ δ > 0, Function.support R ⊆ Set.Icc δ 1) →
-      (fun X : ℕ => smoothSum a R X) =o[atTop] (fun X : ℕ => (X : ℝ))) :
-    (fun X : ℕ => sharpSum a X) =o[atTop] (fun X : ℕ => (X : ℝ)) :=
-  sharp_of_smooth a κ hmean hsmooth
 
 end FixedNumerator

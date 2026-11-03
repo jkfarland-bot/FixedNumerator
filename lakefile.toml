@@ -1,5 +1,5 @@
 name = "FixedNumerator"
-version = "1.0.0"
+version = "1.1.0"
 defaultTargets = ["FixedNumerator", "Challenge", "Solution"]
 
 [[require]]
