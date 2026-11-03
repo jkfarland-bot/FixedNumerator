@@ -29,14 +29,24 @@ bookkeeping around it:
 - **Lemma 2.2**: the splitting identity for the truncated series
   `∑_{N(c) ≤ X, c ≡ β (4), (c, γ) = 1} g₄(μ, c) W(c)`, as an exact finite identity
   (`lemma_2_2`).
-- **Corollary 2.3**, removing `π` from the coprimality condition:
-  - when `ord_π μ ≡ 1, 3 (mod 4)`, a single equation (`corollary_2_3_odd`) and its explicit finite
-    inverse, the truncated `1/Δ(s)` (`corollary_2_3_odd_inverse`);
-  - when `ord_π μ ≡ 0, 2`, the coupled pair of DDHL (8.6) and (8.7) (`corollary_2_3_coupled`);
+- **Corollary 2.3**, removing `π` from the coprimality condition, for `μ = π^e μ'` with `μ'` prime
+  to `π` and every `e ≥ 0`:
+  - on the series prime to `π`, the valuation reduces modulo `4`: `π^e μ'` may be replaced by
+    `π^{e mod 4} μ'` (`corollary_2_3_reduce`);
+  - the splitting for every `e`, with all its terms: by the support of `g₄(μ, π^k)` (DDHL (3.7))
+    they are `k = 4j ≤ e` and `k = e + 1` (`corollary_2_3_general`). For `e ≥ 4` there are more
+    than two; at `e = 5` the terms are `k = 0, 4, 6`;
+  - the four exact valuations `e = 0, 1, 2, 3`, to which the reduction brings every series prime
+    to `π`: for `e = 1, 3` a single equation (`corollary_2_3_odd`) and its explicit finite inverse,
+    the truncated `1/Δ(s)` (`corollary_2_3_odd_inverse`); for `e = 0, 2` the coupled pair of DDHL
+    (8.6) and (8.7) (`corollary_2_3_coupled`). These single equations are stated for `e ≤ 3` only;
+    they do not hold as written for `e ≥ 4`;
   - the determinants are bounded below on `Re s ≥ 1`: `determinant_lower`, `determinant_ne_zero`,
     `determinant_r1`, `determinant_r3`, `determinant_coupled`.
-- **Corollary 1.2**: smoothed `o(X)` bounds and the prime ideal theorem give `o(X)` for the sharp
-  sum (`smoothing_removal`).
+
+The passage from smoothed to sharp sums in the note's Corollary 1.2 is routine and is not among
+the registered statements. A Lean proof of it remains in `FixedNumerator/Sharp.lean` as part of the
+development, but it is not in `Challenge.lean` or `comparator.json`.
 
 Toolchain: `leanprover/lean4:v4.35.0`, Mathlib `v4.35.0`.
 
@@ -83,7 +93,21 @@ Not formalized, and cited from DDHL in the note:
 - `FixedNumerator/Primary.lean`: primary elements, norms modulo `8`, signs.
 - `FixedNumerator/Local.lean`: (3.6), the splitting identity, periodicity.
 - `FixedNumerator/Split.lean`: Lemma 2.2 for truncated sums.
-- `FixedNumerator/Cases.lean`: Corollary 2.3 and the finite inverse.
+- `FixedNumerator/Cases.lean`: Corollary 2.3 for `e = 0, 1, 2, 3` and the finite inverse.
+- `FixedNumerator/General.lean`: Corollary 2.3 for every `e`: the reduction modulo `4` and the
+  general splitting.
 - `FixedNumerator/Determinant.lean`: the determinant bounds.
-- `FixedNumerator/Sharp.lean`: Corollary 1.2.
+- `FixedNumerator/Sharp.lean`: the smoothing removal of Corollary 1.2 (not registered).
 - `Challenge.lean` / `Solution.lean` / `comparator.json`: the Palomar statement surface.
+
+## Changes
+
+- **v1.1.** After the Palomar review of v1.0:
+  - Corollary 2.3 now covers every valuation, not only `e = 0, 1, 2, 3`: new statements
+    `corollary_2_3_reduce` (the valuation reduces modulo `4` on the series prime to `π`) and
+    `corollary_2_3_general` (the splitting for every `e`, with its terms at `k = 4j ≤ e`). In v1.0
+    the README described the cases by `ord_π μ` modulo `4`, while the single equations hold only
+    for `e ≤ 3`.
+  - The smoothing removal (`smoothing_removal`, Corollary 1.2) is no longer a registered statement,
+    and the definitions `countAbs`, `sharpSum`, `smoothSum` it used are no longer compared.
+  - The other 16 statements are unchanged.
