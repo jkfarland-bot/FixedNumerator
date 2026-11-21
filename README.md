@@ -99,6 +99,9 @@ Not formalized, and cited from DDHL in the note:
 - `FixedNumerator/Determinant.lean`: the determinant bounds.
 - `FixedNumerator/Sharp.lean`: the smoothing removal of Corollary 1.2 (not registered).
 - `Challenge.lean` / `Solution.lean` / `comparator.json`: the Palomar statement surface.
+  `comparator.json` lists no definition holes, so the definitions in `Challenge.lean` are compared
+  with the development's, bodies included (earlier releases listed them as holes, which compares
+  only their names and types).
 
 ## Changes
 

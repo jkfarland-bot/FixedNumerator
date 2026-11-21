@@ -21,13 +21,7 @@
     "FixedNumerator.determinant_r3",
     "FixedNumerator.determinant_coupled"
   ],
-  "definition_names": [
-    "FixedNumerator.lam3",
-    "FixedNumerator.IsPrimary",
-    "FixedNumerator.C",
-    "FixedNumerator.normBall",
-    "FixedNumerator.truncSum"
-  ],
+  "definition_names": [],
   "permitted_axioms": [
     "propext",
     "Quot.sound",

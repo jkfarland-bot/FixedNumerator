@@ -124,7 +124,9 @@ review:
     - "Joseph S. Farland"
   notes: >-
     The definitions in Challenge.lean are copied verbatim from the development and compared by
-    Comparator, including the structure QuarticData (a modified copy is rejected). The companion
+    Comparator, bodies included, as is the structure QuarticData (a modified copy is rejected):
+    comparator.json lists no definition holes (earlier releases listed the definitions as holes, so
+    only their names and types were compared). The companion
     note was read against DDHL by an independent AI referee pass; no external human referee has
     reviewed the note or the formalization.
 
