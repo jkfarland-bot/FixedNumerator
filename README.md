@@ -99,9 +99,15 @@ Not formalized, and cited from DDHL in the note:
 - `FixedNumerator/Determinant.lean`: the determinant bounds.
 - `FixedNumerator/Sharp.lean`: the smoothing removal of Corollary 1.2 (not registered).
 - `Challenge.lean` / `Solution.lean` / `comparator.json`: the Palomar statement surface.
+  `comparator.json` lists no definition holes, so the definitions in `Challenge.lean` are compared
+  with the development's, bodies included (earlier releases listed them as holes, which compares
+  only their names and types).
 
 ## Changes
 
+- **v1.1.1.** `comparator.json` lists no definition holes, so Comparator compares the definitions
+  in `Challenge.lean` with the development's, bodies included; in earlier releases only their
+  names and types were compared. `Challenge.lean` now opens with `@[expose] public section`, as the development does, so that both elaborate the definitions identically. The repository now also carries the Palomar template CI (build, metadata, comparator). No statement changes.
 - **v1.1.** After the Palomar review of v1.0:
   - Corollary 2.3 now covers every valuation, not only `e = 0, 1, 2, 3`: new statements
     `corollary_2_3_reduce` (the valuation reduces modulo `4` on the series prime to `π`) and

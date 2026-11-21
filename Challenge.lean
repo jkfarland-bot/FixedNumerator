@@ -2,7 +2,7 @@ module
 
 public import Mathlib
 
-public section
+@[expose] public section
 
 /-!
 # Quartic Gauss sums with a fixed numerator: statements
