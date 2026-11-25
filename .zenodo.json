@@ -1,0 +1,41 @@
+{
+  "title": "FixedNumerator: a Lean 4 formalization of the local step in extending a theorem on quartic Gauss sums over primes to a fixed numerator",
+  "upload_type": "software",
+  "creators": [
+    {
+      "name": "Farland, Joseph S.",
+      "orcid": "0009-0007-6809-804X"
+    }
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "quartic Gauss sums",
+    "Gaussian integers",
+    "metaplectic theta functions",
+    "Lean 4",
+    "Mathlib",
+    "formal verification"
+  ],
+  "description": "<p>Lean 4 / Mathlib formalization of the local step in extending Theorem 1.1 of C. David, A. Dunn, A. Hamieh and H. Lin (Quartic Gauss sums over primes and metaplectic theta functions, arXiv:2306.11875) from the numerator 1 to any fixed numerator &nu;, accompanying J. S. Farland, \"Quartic Gauss sums over primes with a fixed numerator\" (doi:10.5281/zenodo.23882882).</p>\n<p>Their theorem bounds the sums of normalized quartic Gauss sums over primary primes of Z[i] in a class modulo 4, twisted by (c/|c|)^ℓ, by X^{5/6+&epsilon;}. The companion note shows that their argument gives the same exponent for g̃₄(&nu;, c) with any fixed nonzero &nu;. The only new ingredient is a local identity that removes the primes dividing &nu; from the coprimality conditions of the Type I Dirichlet series.</p>\n<p>This record formalizes that step. The quartic residue symbol and Gauss sum are abstract functions, with the identities of DDHL &sect;3 that the computation uses taken as hypotheses.</p>\n<p>The development proves:</p>\n<ul>\n<li>DDHL (3.6);</li>\n<li>the splitting identity g₄(&mu;, &pi;^k c&prime;) = (&minus;1)^{C(c&prime;, &pi;^k)} g₄(&mu;, &pi;^k) g₄(&mu; &pi;^{2k}, c&prime;), with no condition linking &mu; and &pi;;</li>\n<li>periodicity of the numerator modulo &pi;⁴;</li>\n<li>the 2-adic facts behind the signs;</li>\n<li>the splitting identity for truncated sums, as an exact finite identity;</li>\n<li>the removal of a prime &pi; of the numerator for every valuation e = ord_&pi; &mu;:\n<ul>\n<li>the reduction of e modulo 4 on the series prime to &pi;;</li>\n<li>the splitting for every e, with its terms at k = 4j &le; e and k = e + 1;</li>\n<li>the four exact cases e = 0, 1, 2, 3, including the coupled pair of DDHL (8.6) and (8.7) and an explicit finite inverse of the determinant;</li>\n</ul>\n</li>\n<li>lower bounds for the determinants on Re s &ge; 1.</li>\n</ul>\n<p>The analytic inputs of DDHL are cited, not formalized: Proposition 4.3, Suzuki&rsquo;s relation (4.39), the quadratic large sieve, Vaughan&rsquo;s identity and the contour shift.</p>\n<p>The statements are in Challenge.lean. Lean's comparator checks them against the proofs, with the definition bodies compared, and the proofs are replayed in the Lean, nanoda and con-ron kernels. No sorry, no native_decide; standard axioms only. The changes in each version are described in the release notes on GitHub: <a href=\"https://github.com/jkfarland-bot/FixedNumerator/releases\">github.com/jkfarland-bot/FixedNumerator/releases</a>.</p>",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.23882882",
+      "relation": "isSupplementTo",
+      "scheme": "doi",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "https://github.com/jkfarland-bot/FixedNumerator",
+      "relation": "isSupplementTo",
+      "scheme": "url",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.23825569",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "AI assistance: the Lean code in this record was drafted and repaired by Claude (Anthropic), an AI model, from the statements and proofs of the companion paper \"Quartic Gauss sums over primes with a fixed numerator\" (doi:10.5281/zenodo.23882882), and compiled locally with lake. The v1.1 revision (the reduction modulo 4 and the general splitting) was also written by Claude in response to the Palomar review. Every proof is checked by the Lean kernel, and Comparator replays the solution against the statement file under the Lean, NanoDa and con-ron kernels. The author, Joseph S. Farland, chose the scope, directed the work, and is responsible for the contents. No external human reviewer has checked the formalization."
+}
